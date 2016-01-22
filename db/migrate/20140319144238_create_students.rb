@@ -11,8 +11,9 @@ class CreateStudents < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.date :birthday
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.references :teacher
+
+      t.timestamps null: false
       # Use the AR migration guide for syntax reference
     end
   end

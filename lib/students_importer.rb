@@ -5,7 +5,7 @@ class StudentsImporter
   end
 
   def import
-    field_names = ['first_name', 'last_name', 'gender', 'birthday', 'email', 'phone']
+    field_names = ['first_name', 'last_name', 'gender', 'birthday', 'email', 'phone', 'teacher_id']
     puts "Importing students from '#{@filename}'"
     failure_count = 0
     Student.transaction do

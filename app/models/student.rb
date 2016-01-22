@@ -1,10 +1,13 @@
+require 'pry'
 class Student < ActiveRecord::Base
+
   belongs_to :teacher
 
-  validates :email, presence: true, uniqueness: true,  format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/}, length: {minimum: 10}
-   before_validation :check_age
+  validates :email, presence: true, uniqueness: true,  format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}, length: {minimum: 10}
+  before_validation :check_age
+
+  after_save :last_student, if: :teacher
   
-#/\A(\w)(\w)+@([^@\.]+\.)+[^@\.]+\z/
   def name
     name=(self.first_name+' '+self.last_name)
   end
@@ -19,6 +22,11 @@ class Student < ActiveRecord::Base
     if age<=3
       return false
     end
+  end
+
+  def last_student
+    teacher.last_student_added_at = Date.today
+    teacher.save
   end
 
 end

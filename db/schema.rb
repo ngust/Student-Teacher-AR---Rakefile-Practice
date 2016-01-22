@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20150120181900) do
     t.string   "email"
     t.string   "phone"
     t.date     "birthday"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -29,8 +30,9 @@ ActiveRecord::Schema.define(version: 20150120181900) do
     t.string   "email"
     t.string   "phone"
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.date     "last_student_added_at"
   end
 
 end

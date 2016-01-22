@@ -10,6 +10,7 @@ class CreateTeachers < ActiveRecord::Migration
       t.string :phone
       t.string :address
       t.timestamps null: false
+      t.date :last_student_added_at
 
       # Use the AR migration guide for syntax reference
     end
